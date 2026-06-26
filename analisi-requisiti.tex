@@ -171,15 +171,15 @@
   Area & ID & Descrizione & Categoria & Priorità \\
   %
   \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Autenticazione e Gestione Account}Autenticazione e Gestione Account\end{sideways}
-    & RF-01 & Registrazione tramite email e password                                               & \catAccount  & \priCritical  \\
-    & RF-02 & Login con Google / Apple (SSO)                                                       & \catSecurity & \priDesirable \\
-    & RF-03 & Recupero password tramite email (link di reset)                                      & \catSecurity & \priMandatory \\
-    & RF-04 & Selezione obbligatoria di almeno 3 interessi per personalizzare il feed              & \catUX       & \priMandatory \\
+    & RF-01 & Registrazione tramite email e password organizzata in tre step: account, dati personali, completamento profilo.                                           & \catAccount  & \priCritical  \\
+    & RF-02 & Login con Google / Apple (SSO)                                                       & \catSecurity & \priMinor \\
+    & RF-03 & Recupero password tramite email (link di reset)                                      & \catSecurity & \priMinor \\
+    & RF-04 & Selezione obbligatoria di almeno 3 interessi (con validazione prima del completamento registrazione) per personalizzare il feed              & \catUX       & \priMandatory \\
     & RF-05 & Verifica età: obbligo di inserire la data di nascita; soglia minima 16 anni          & \catAccount  & \priCritical  \\
-    & RF-06 & Profilo utente: nome, bio, città, avatar, foto profilo caricabile, interessi         & \catAccount  & \priMandatory \\
+    & RF-06 & Profilo utente: nome, bio, città, foto profilo caricabile, interessi         & \catAccount  & \priMandatory \\
     & RF-07 & Visualizzazione statistiche profilo (eventi seguiti, creati)                         & \catAccount  & \priDesirable \\
     & RF-08 & Modifica profilo e preferenze in qualsiasi momento                                   & \catAccount  & \priMandatory \\
-    & RF-09 & Cancellazione definitiva dell'account e dati associati (diritto all'oblio GDPR)      & \catAccount  & \priMandatory \\
+    & RF-09 & Cancellazione definitiva dell'account e dati associati                               & \catAccount  & \priMinor \\
   %
   \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Scoperta e Ricerca Eventi}Scoperta e Ricerca Eventi\end{sideways}
     & RF-10 & Feed home con eventi in zona ordinati per distanza dall'utente                       & \catUX       & \priCritical  \\
