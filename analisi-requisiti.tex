@@ -1,0 +1,278 @@
+
+
+\newcommand{\inputparam}[2]{%
+  \def\parg{#2}
+  \input{#1}
+}
+\inputparam{intestazione}{Analisi dei requisiti}
+
+
+
+% ── Colori categorie ──────────────────────────────────────────────────────────
+\definecolor{pillSecurityBg}{HTML}{E4A8D8}
+\definecolor{pillSecurityFg}{HTML}{7B3A6E}
+\definecolor{pillAccountBg}{HTML}{FAC98E}
+\definecolor{pillAccountFg}{HTML}{7A4A10}
+\definecolor{pillUXBg}{HTML}{A3C9F5}
+\definecolor{pillUXFg}{HTML}{1A4E8A}
+\definecolor{pillDataBg}{HTML}{93DEC5}
+\definecolor{pillDataFg}{HTML}{1A6B4E}
+\definecolor{pillPerfBg}{HTML}{FAE07A}
+\definecolor{pillPerfFg}{HTML}{7A5E0A}
+\definecolor{pillDeviceBg}{HTML}{B8A7EF}
+\definecolor{pillDeviceFg}{HTML}{3D2478}
+\definecolor{pillPortBg}{HTML}{8ED08E}
+\definecolor{pillPortFg}{HTML}{1E5C1E}
+\definecolor{pillNotifBg}{HTML}{F5A8A8}
+\definecolor{pillNotifFg}{HTML}{7A1E1E}
+\definecolor{pillMsgBg}{HTML}{87C9E8}
+\definecolor{pillMsgFg}{HTML}{1A4D66}
+
+% ── Colori priorità ───────────────────────────────────────────────────────────
+\definecolor{pillCriticalBg}{HTML}{E57373}
+\definecolor{pillCriticalFg}{HTML}{8B0000}
+\definecolor{pillMandatoryBg}{HTML}{FFB74D}
+\definecolor{pillMandatoryFg}{HTML}{7A3800}
+\definecolor{pillDesirableBg}{HTML}{FFF176}
+\definecolor{pillDesirableFg}{HTML}{7A6000}
+\definecolor{pillMinorBg}{HTML}{64B5F6}
+\definecolor{pillMinorFg}{HTML}{1A3A5C}
+\definecolor{pillCosmeticBg}{HTML}{81C784}
+\definecolor{pillCosmeticFg}{HTML}{1B5E20}
+
+% ── Colori globali tabelle ────────────────────────────────────────────────────
+
+
+% ── Colori macroaree RF ───────────────────────────────────────────────────────
+\definecolor{MacroAuthBg}{HTML}{D5E8FB}
+\definecolor{MacroAuthFg}{HTML}{1A4E8A}
+\definecolor{MacroScopBg}{HTML}{D8F3EC}
+\definecolor{MacroScopFg}{HTML}{1A6B4E}
+\definecolor{MacroMappBg}{HTML}{E0D9F8}
+\definecolor{MacroMappFg}{HTML}{3D2478}
+\definecolor{MacroDetBg}{HTML}{FDECD5}
+\definecolor{MacroDetFg}{HTML}{7A4A10}
+\definecolor{MacroCrBg}{HTML}{FFE4E4}
+\definecolor{MacroCrFg}{HTML}{7A1E1E}
+
+% ── Colori macroaree RNF ──────────────────────────────────────────────────────
+\definecolor{MacroPerfBg}{HTML}{FEF6D5}
+\definecolor{MacroPerfFg}{HTML}{7A5E0A}
+\definecolor{MacroSicBg}{HTML}{F2D7EE}
+\definecolor{MacroSicFg}{HTML}{7B3A6E}
+\definecolor{MacroPrivBg}{HTML}{D9EFF8}
+\definecolor{MacroPrivFg}{HTML}{1A4D66}
+\definecolor{MacroAccBg}{HTML}{D6F0D6}
+\definecolor{MacroAccFg}{HTML}{1E5C1E}
+\definecolor{MacroDispBg}{HTML}{FDECD5}
+\definecolor{MacroDispFg}{HTML}{7A4A10}
+\definecolor{MacroCompatBg}{HTML}{D8F3EC}
+\definecolor{MacroCompatFg}{HTML}{1A6B4E}
+
+% ── Pill ─────────────────────────────────────────────────────────────────────
+\newcommand{\pill}[3]{%
+  \tikz[baseline=-0.6ex]{%
+    \node[
+      fill=#1,
+      text=#2,
+      draw=#1,
+      rounded corners=8pt,
+      inner xsep=7pt,
+      inner ysep=3pt,
+      font=\footnotesize\bfseries,
+      minimum height=16pt
+    ]{#3};%
+  }%
+}
+
+% ── Scorciatoie categoria ─────────────────────────────────────────────────────
+\newcommand{\catSecurity}{\pill{pillSecurityBg}{pillSecurityFg}{Security}}
+\newcommand{\catAccount} {\pill{pillAccountBg} {pillAccountFg} {Account}}
+\newcommand{\catUX}      {\pill{pillUXBg}      {pillUXFg}      {UX/UI}}
+\newcommand{\catData}    {\pill{pillDataBg}    {pillDataFg}    {Data}}
+\newcommand{\catPerf}    {\pill{pillPerfBg}    {pillPerfFg}    {Performance}}
+\newcommand{\catDevice}  {\pill{pillDeviceBg}  {pillDeviceFg}  {Device}}
+\newcommand{\catPort}    {\pill{pillPortBg}    {pillPortFg}    {Portability}}
+\newcommand{\catNotif}   {\pill{pillNotifBg}   {pillNotifFg}   {Notification}}
+\newcommand{\catMsg}     {\pill{pillMsgBg}     {pillMsgFg}     {Messaging}}
+
+% ── Scorciatoie priorità ──────────────────────────────────────────────────────
+\newcommand{\priCritical} {\pill{pillCriticalBg} {pillCriticalFg} {0 -- Critical}}
+\newcommand{\priMandatory}{\pill{pillMandatoryBg}{pillMandatoryFg}{1 -- Mandatory}}
+\newcommand{\priDesirable}{\pill{pillDesirableBg}{pillDesirableFg}{2 -- Desirable}}
+\newcommand{\priMinor}    {\pill{pillMinorBg}    {pillMinorFg}    {3 -- Minor}}
+\newcommand{\priCosmetic} {\pill{pillCosmeticBg} {pillCosmeticFg} {4 -- Cosmetic}}
+
+% ── Template longtblr ─────────────────────────────────────────────────────────
+
+
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Legenda Categorie}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{tblr}[label = nome]{
+  width   = \linewidth,
+  row{odd}= {CatskillWhite},
+  colspec = {Q[c,m,3.5cm] X[l,m,cmd=\RaggedRight]},
+  row{1} = {bg=Cello, c, m, fg=white, font=\bfseries},
+}
+  Categoria & Significato \\
+  \catSecurity & Autenticazione, crittografia, privacy, moderazione, pagamenti sicuri \\
+  \catDevice   & Funzionalità hardware: GPS/geolocalizzazione, sensori, Keychain/Keystore \\
+  \catData     & Persistenza, salvataggio, cache, struttura dati, database, GDPR \\
+  \catPerf     & Tempi di risposta, frame rate, scalabilità, uptime, throughput \\
+  \catUX       & Navigazione, layout, interazioni, accessibilità, feedback visivo \\
+  \catAccount  & Profilo utente, registrazione, rating, statistiche, gestione identità \\
+  \catPort     & Cross-platform, multi-lingua, integrazione con app/servizi esterni \\
+  \catNotif    & Push notification, reminder, centro notifiche \\
+  \catMsg      & Chat real-time, canali broadcast, messaggistica in-app \\
+\end{tblr}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Legenda Priorità}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{tblr}[label = nome]{
+  width   = \linewidth,
+  row{odd}= {CatskillWhite},
+  colspec = {Q[c,m,3.5cm] X[l,m,cmd=\RaggedRight]},
+  row{1} = {bg=Cello, c, m, fg=white, font=\bfseries},
+}
+  Priorità & Significato \\
+  \priCritical  & Il sistema non funziona se questo requisito non è soddisfatto \\
+  \priMandatory & Richiesto per il rilascio in produzione \\
+  \priDesirable & Migliora l'esperienza, ma non è bloccante \\
+  \priMinor     & Utile ma rimandabile a versioni successive \\
+  \priCosmetic  & Puro abbellimento, nessun impatto funzionale \\
+\end{tblr}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Requisiti Funzionali}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{longtblr}[label = none]{
+  width   = \linewidth,
+  row{odd}= {CatskillWhite},
+  rowhead = 1,
+  colspec = {Q[c,m,1.5cm] Q[c,m,1.5cm] X[l,m,cmd=\RaggedRight] Q[c,m,2.6cm] Q[c,m,3cm]},
+  row{1}  = {Cello, c, m, fg=white, font=\bfseries},
+  column{2} = {c, m},
+  column{4} = {c, m},
+  column{5} = {c, m},
+  cell{2}{1}  = {r=9}  {c, m, bg=MacroAuthBg, fg=MacroAuthFg, font=\bfseries},
+  cell{11}{1} = {r=11} {c, m, bg=MacroScopBg, fg=MacroScopFg, font=\bfseries},
+  cell{22}{1} = {r=4}  {c, m, bg=MacroMappBg, fg=MacroMappFg, font=\bfseries},
+  cell{26}{1} = {r=3}  {c, m, bg=MacroDetBg,  fg=MacroDetFg,  font=\bfseries},
+  cell{29}{1} = {r=7}  {c, m, bg=MacroCrBg,   fg=MacroCrFg,   font=\bfseries},
+}
+  Area & ID & Descrizione & Categoria & Priorità \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Autenticazione e Gestione Account}Autenticazione e Gestione Account\end{sideways}
+    & RF-01 & Registrazione tramite email e password                                               & \catAccount  & \priCritical  \\
+    & RF-02 & Login con Google / Apple (SSO)                                                       & \catSecurity & \priDesirable \\
+    & RF-03 & Recupero password tramite email (link di reset)                                      & \catSecurity & \priMandatory \\
+    & RF-04 & Selezione obbligatoria di almeno 3 interessi per personalizzare il feed              & \catUX       & \priMandatory \\
+    & RF-05 & Verifica età: obbligo di inserire la data di nascita; soglia minima 16 anni          & \catAccount  & \priCritical  \\
+    & RF-06 & Profilo utente: nome, bio, città, avatar, foto profilo caricabile, interessi         & \catAccount  & \priMandatory \\
+    & RF-07 & Visualizzazione statistiche profilo (eventi seguiti, creati)                         & \catAccount  & \priDesirable \\
+    & RF-08 & Modifica profilo e preferenze in qualsiasi momento                                   & \catAccount  & \priMandatory \\
+    & RF-09 & Cancellazione definitiva dell'account e dati associati (diritto all'oblio GDPR)      & \catAccount  & \priMandatory \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Scoperta e Ricerca Eventi}Scoperta e Ricerca Eventi\end{sideways}
+    & RF-10 & Feed home con eventi in zona ordinati per distanza dall'utente                       & \catUX       & \priCritical  \\
+    & RF-11 & Filtro per categoria tematica (serata, calcetto, concerto, sport, social, altro)     & \catUX       & \priMandatory \\
+    & RF-12 & Filtro per data (giorno, settimana, mese)                                            & \catUX       & \priMandatory \\
+    & RF-13 & Filtro per orario (fascia mattina / pomeriggio / sera)                               & \catUX       & \priDesirable \\
+    & RF-14 & Filtro per affinità elettiva (basato sugli interessi del profilo utente)             & \catUX       & \priDesirable \\
+    & RF-15 & Ricerca testuale per titolo e luogo                                                  & \catUX       & \priMandatory \\
+    & RF-16 & Ordinamento per: distanza, popolarità, data                                          & \catUX       & \priDesirable \\
+    & RF-17 & Sezione 'In corso ora' (eventi live)                                                 & \catUX       & \priMinor     \\
+    & RF-18 & Sezione 'In tendenza' (algoritmo di popolarità)                                      & \catUX       & \priMinor     \\
+    & RF-19 & Visualizzazione Timeline: scorrimento cronologico degli eventi futuri                 & \catUX       & \priMinor     \\
+    & RF-20 & Salvataggio eventi (bookmark/preferiti)                                               & \catData     & \priMinor     \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Mappa Interattiva}Mappa Interattiva\end{sideways}
+    & RF-21 & Vista mappa con pin colorati per categoria e geolocalizzazione dinamica in tempo reale & \catDevice & \priMandatory \\
+    & RF-22 & Popup informativo al click del pin con anteprima dell'evento                         & \catUX       & \priMandatory \\
+    & RF-23 & Filtri categoria sincronizzati tra lista eventi e mappa                               & \catUX       & \priDesirable \\
+    & RF-24 & Integrazione con Google Maps / Apple Maps per navigazione verso l'evento              & \catPort     & \priDesirable \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Dettaglio Evento}Dettaglio Evento\end{sideways}
+    & RF-25 & Scheda dettaglio: titolo, descrizione, data, orario, luogo, costo, partecipanti      & \catUX       & \priCritical  \\
+    & RF-26 & Mappa integrata con indirizzo dell'evento                                             & \catUX       & \priDesirable \\
+    & RF-27 & Pulsante di adesione direttamente nella scheda dettaglio                              & \catUX       & \priMandatory \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Creazione e Gestione Evento}Creazione e Gestione Evento\end{sideways}
+    & RF-28 & Form creazione evento in 3 step: tipo $\rightarrow$ luogo/orari $\rightarrow$ pubblicazione & \catUX & \priCritical \\
+    & RF-29 & Ricerca luogo con autocompletamento                                                   & \catUX       & \priMinor     \\
+    & RF-30 & Posti massimi configurabili (opzionale per eventi illimitati)                         & \catData     & \priMandatory \\
+    & RF-31 & Costo per partecipante (0 = gratis)                                                   & \catData     & \priMandatory \\
+    & RF-32 & Scelta tipo chat: gruppo aperto o solo annunci                                        & \catMsg      & \priMandatory \\
+    & RF-33 & Modifica evento dopo la pubblicazione                                                 & \catData     & \priMandatory \\
+    & RF-34 & Cancellazione evento con notifica automatica ai partecipanti                          & \catNotif    & \priMandatory \\
+\end{longtblr}
+
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Requisiti Non Funzionali}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{longtblr}[label = none]{
+  width   = \linewidth,
+  row{odd}= {CatskillWhite},
+  rowhead = 1,
+  colspec = {Q[c,m,1.5cm] Q[c,m,1.5cm] X[l,m,cmd=\RaggedRight] Q[c,m,2.6cm] Q[c,m,3cm]},
+  row{1}  = {Cello, c, m, fg=white, font=\bfseries},
+  column{2} = {c, m},
+  column{4} = {c, m},
+  column{5} = {c, m},
+  cell{2}{1}  = {r=6} {c, m, bg=MacroPerfBg,   fg=MacroPerfFg,   font=\bfseries},
+  cell{8}{1}  = {r=5} {c, m, bg=MacroSicBg,    fg=MacroSicFg,    font=\bfseries},
+  cell{13}{1} = {r=3} {c, m, bg=MacroPrivBg,   fg=MacroPrivFg,   font=\bfseries},
+  cell{16}{1} = {r=2} {c, m, bg=MacroAccBg,    fg=MacroAccFg,    font=\bfseries},
+  cell{18}{1} = {r=2} {c, m, bg=MacroDispBg,   fg=MacroDispFg,   font=\footnotesize\bfseries},
+  cell{20}{1} = {r=2} {c, m, bg=MacroCompatBg, fg=MacroCompatFg, font=\footnotesize\bfseries},
+  column{2} = {c, m},
+  column{4} = {c, m},
+  column{5} = {c, m},
+}
+  Area & ID & Descrizione & Categoria & Priorità \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Performance}Performance\end{sideways}
+    & RNF-01 & Caricamento lista eventi $<$ 1.5s su connessione 4G                                  & \catPerf     & \priMandatory \\
+    & RNF-02 & Caricamento mappa POI eventi $<$ 2s su connessione 4G                                & \catPerf     & \priMandatory \\
+    & RNF-03 & Tempo di avvio app $\leq$ 3s                                                         & \catPerf     & \priMandatory \\
+    & RNF-04 & Messaggi chat consegnati in $<$ 200ms (real-time)                                    & \catPerf     & \priMandatory \\
+    & RNF-05 & Query geospaziale per eventi entro raggio prestabilito completata in $\leq$ 500ms    & \catPerf     & \priMandatory \\
+    & RNF-06 & Interfaccia reattiva: frame rate $\geq$ 30 fps durante la navigazione                & \catPerf     & \priMandatory \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Sicurezza}Sicurezza\end{sideways}
+    & RNF-07 & Autenticazione JWT con refresh token a 7 giorni                                      & \catSecurity & \priCritical  \\
+    & RNF-08 & Token memorizzato in modo sicuro per evitare login ripetuti                          & \catSecurity & \priCritical  \\
+    & RNF-09 & Hashing delle password con algoritmo salted                                          & \catSecurity & \priCritical  \\
+    & RNF-10 & Crittografia dei dati sensibili in transito e a riposo                               & \catSecurity & \priCritical  \\
+    & RNF-11 & Dati di pagamento mai memorizzati lato client                                        & \catSecurity & \priCritical  \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Privacy}Privacy\end{sideways}
+    & RNF-12 & Consenso esplicito alla geolocalizzazione prima dell'uso                             & \catSecurity & \priCritical  \\
+    & RNF-13 & Supporto diritto all'oblio: cancellazione account e dati su richiesta (RF-09)        & \catData     & \priCritical  \\
+    & RNF-14 & Nessuna condivisione dati con terze parti senza consenso esplicito                    & \catSecurity & \priCritical  \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Accessibilità}Accessibilità\end{sideways}
+    & RNF-15 & Tutte le azioni principali raggiungibili in massimo 3 tap                            & \catUX       & \priDesirable \\
+    & RNF-16 & Interfaccia multi-lingua                                                              & \catUX       & \priDesirable \\
+  %
+  \rotatebox{90}{\makecell{Disponibilità\\e Scalabilità\phantomsection\addcontentsline{toc}{subsection}{Disponibilità e Scalabilità}}}
+    & RNF-17 & Uptime 99\%                                                                          & \catPerf     & \priDesirable \\
+    & RNF-18 & Architettura capace di gestire $\geq$ 10\,000 utenti attivi simultanei senza degrado & \catPerf     & \priMandatory \\
+  %
+  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Portabilità}Portabilità\end{sideways}
+    & RNF-19 & Supporto iOS 15+ e Android 10+ (cross-platform React Native / Expo)                 & \catPort     & \priCritical  \\
+    & RNF-20 & L'applicazione deve mantenere le stesse funzionalità core indipendentemente dalla piattaforma su cui viene eseguita & \catPort & \priMandatory \\
+    
+\end{longtblr}
+\end{document}

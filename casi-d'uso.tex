@@ -1,0 +1,122 @@
+\newcommand{\inputparam}[2]{%
+  \def\parg{#2}
+  \input{#1}
+}
+
+\inputparam{intestazione}{Analisi dei requisiti}
+
+
+\definecolor{MacroAuthBg}{HTML}{D5E8FB}
+\definecolor{MacroAuthFg}{HTML}{1A4E8A}
+\definecolor{MacroProfiloBg}{HTML}{D8F3EC}
+\definecolor{MacroProfiloFg}{HTML}{1A6B4E}
+\definecolor{MacroRicercaBg}{HTML}{E0D9F8}
+\definecolor{MacroRicercaFg}{HTML}{3D2478}
+\definecolor{MacroPrefBg}{HTML}{FDECD5}
+\definecolor{MacroPrefFg}{HTML}{7A4A10}
+\definecolor{MacroIscrizBg}{HTML}{FFE4E4}
+\definecolor{MacroIscrizFg}{HTML}{7A1E1E}
+\definecolor{MacroGestBg}{HTML}{D6F0D6}
+\definecolor{MacroGestFg}{HTML}{1E5C1E}
+\definecolor{MacroChatBg}{HTML}{D9EFF8}
+\definecolor{MacroChatFg}{HTML}{1A4D66}
+\definecolor{MacroNotifBg}{HTML}{F2D7EE}
+\definecolor{MacroNotifFg}{HTML}{7B3A6E}
+\definecolor{pillOptBg}{HTML}{85B7EB}
+\definecolor{pillOptFg}{HTML}{0C447C}
+\definecolor{pillGuestBg}{HTML}{E0E0E0}
+\definecolor{pillGuestFg}{HTML}{424242}
+\definecolor{pillUserBg}{HTML}{B5D4F4}
+\definecolor{pillUserFg}{HTML}{0C447C}
+\definecolor{pillOrgBg}{HTML}{9FE1CB}
+\definecolor{pillOrgFg}{HTML}{085041}
+\definecolor{pillSysBg}{HTML}{CECBF6}
+\definecolor{pillSysFg}{HTML}{3C3489}
+
+\newcommand{\pill}[3]{%
+  \tikz[baseline=-0.6ex]{%
+    \node[
+      fill=#1,
+      text=#2,
+      draw=#1,
+      rounded corners=8pt,
+      inner xsep=7pt,
+      inner ysep=3pt,
+      font=\footnotesize\bfseries,
+      minimum height=16pt
+    ]{#3};%
+  }%
+}
+
+\newcommand{\actGuest}{\pill{pillGuestBg}{pillGuestFg}{Guest}}
+\newcommand{\actUser} {\pill{pillUserBg} {pillUserFg} {Utente registrato}}
+\newcommand{\actOrg}  {\pill{pillOrgBg}  {pillOrgFg}  {Organizzatore}}
+\newcommand{\actSys}  {\pill{pillSysBg}  {pillSysFg}  {Sistema}}
+\newcommand{\stOpt}   {\pill{pillOptBg}  {pillOptFg}  {Opzionale}}
+
+
+\newpage
+\section{Attori del sistema}
+\begin{tblr}[label = nome]{
+  width   = \linewidth,
+  row{odd}= {CatskillWhite},
+  colspec = {Q[c,m, 5cm] X[l,m,cmd=\RaggedRight]},
+  row{1} = {bg=Cello, c, m, fg=white, font=\bfseries},
+}
+  Attore & Descrizione \\
+  \actGuest & Apre l'applicazione senza aver effettuato il login. Rappresenta sia il nuovo utente senza account, sia l'utente registrato con sessione scaduta o che ha effettuato il logout. \\
+  \actUser & Ha completato la registrazione. Può iscriversi, salvare, commentare in chat e creare eventi. \\
+  \actOrg & Utente registrato che ha creato un evento. Ha privilegi aggiuntivi: modifica, cancellazione, gestione partecipanti e dashboard statistiche. \\
+  \actSys & Utente con ruolo di moderatore della piattaforma. Può rimuovere contenuti, bannare utenti e gestire le segnalazioni. \\
+\end{tblr}
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Casi d'uso}
+\counterwithout{subsection}{section}
+\renewcommand{\thesubsection}{UC\arabic{subsection}:}
+
+
+\subsection{Registrazione nuovo account}
+\vspace{-0.5cm}
+\begin{longtblr}[
+  label = none,
+  entry = none,
+]{
+  width = \linewidth,
+  colspec = {Q[c,m, 4cm] X[l, m,cmd=\RaggedRight]},
+  row{odd} = {CatskillWhite},
+  column{1} = {r,font=\bfseries},
+}
+Attori & \actGuest \hspace{0.1cm} \actSys \\
+Precondizioni & L'utente non è autenticato.\\
+Postcondizioni & Account creato, sessione avviata, feed personalizzato in base agli interessi selezionati.\\
+Flusso normale & {
+  \parbox[t]{\linewidth}{%
+    \vspace{-18pt}
+    \begin{enumerate}[nosep, leftmargin=*, topsep=0pt, font=\bfseries]
+      \item L'utente apre l'app e seleziona Registrati.
+      \item Inserisce nome, email e password.
+      \item Inserisce la data di nascita.
+      \item Il sistema valida i dati e verica che l'email non sia già registrata.
+      \item L'utente seleziona gli interessi dal catalogo proposto e la città.
+      \item Il sistema crea il prolo e avvia la sessione.
+      \item L'utente viene reindirizzato al feed home personalizzato.
+    \end{enumerate}%
+    \vspace{8pt}
+  }
+}\\
+Flusso alternativo & {
+  \parbox[t]{\linewidth}{%
+    \vspace{-18pt}
+   \begin{enumerate}[nosep, leftmargin=*, topsep=0pt, font=\bfseries, label=a\arabic*.]
+      \item \textbf{Email già in uso:} il sistema mostra un messaggio di errore e suggerisce il login.
+      \item \textbf{Età inferiore a 16 anni:} il sistema blocca la registrazione con messaggio esplicativo.
+      \item \textbf{Password non conforme:} il sistema evidenzia i requisiti non soddisfatti in tempo reale.
+    \end{enumerate}%
+    \vspace{8pt}
+  }
+}\\
+\end{longtblr}
+
+\end{document}
