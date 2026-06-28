@@ -95,13 +95,23 @@
 \newcommand{\catPort}    {\pill{pillPortBg}    {pillPortFg}    {Portability}}
 \newcommand{\catNotif}   {\pill{pillNotifBg}   {pillNotifFg}   {Notification}}
 \newcommand{\catMsg}     {\pill{pillMsgBg}     {pillMsgFg}     {Messaging}}
+\newcommand{\catMessaging}{\catMsg}
+\newcommand{\catNotification}{\catNotif}
+\newcommand{\catPerformance}{\catPerf}
+\newcommand{\catPortability}{\catPort}
 
 % ── Scorciatoie priorità ──────────────────────────────────────────────────────
 \newcommand{\priCritical} {\pill{pillCriticalBg} {pillCriticalFg} {0 -- Critical}}
 \newcommand{\priMandatory}{\pill{pillMandatoryBg}{pillMandatoryFg}{1 -- Mandatory}}
 \newcommand{\priDesirable}{\pill{pillDesirableBg}{pillDesirableFg}{2 -- Desirable}}
+\newcommand{\priDesiderable}{\priDesirable}
 \newcommand{\priMinor}    {\pill{pillMinorBg}    {pillMinorFg}    {3 -- Minor}}
 \newcommand{\priCosmetic} {\pill{pillCosmeticBg} {pillCosmeticFg} {4 -- Cosmetic}}
+
+% ── Etichette laterali delle macroaree ────────────────────────────────────────
+\newcommand{\sideArea}[1]{%
+  \rotatebox{90}{\makecell[c]{#1}}%
+}
 
 % ── Template longtblr ─────────────────────────────────────────────────────────
 
@@ -157,62 +167,87 @@
   width   = \linewidth,
   row{odd}= {CatskillWhite},
   rowhead = 1,
-  colspec = {Q[c,m,1.5cm] Q[c,m,1.5cm] X[l,m,cmd=\RaggedRight] Q[c,m,2.6cm] Q[c,m,3cm]},
+  colspec = {Q[c,m,1.6cm] Q[c,m,1.5cm] X[l,m,cmd=\RaggedRight] Q[c,m,2.8cm] Q[c,m,3.2cm]},
   row{1}  = {Cello, c, m, fg=white, font=\bfseries},
+  column{1} = {c, m},
   column{2} = {c, m},
   column{4} = {c, m},
   column{5} = {c, m},
-  cell{2}{1}  = {r=9}  {c, m, bg=MacroAuthBg, fg=MacroAuthFg, font=\bfseries},
-  cell{11}{1} = {r=11} {c, m, bg=MacroScopBg, fg=MacroScopFg, font=\bfseries},
-  cell{22}{1} = {r=4}  {c, m, bg=MacroMappBg, fg=MacroMappFg, font=\bfseries},
-  cell{26}{1} = {r=3}  {c, m, bg=MacroDetBg,  fg=MacroDetFg,  font=\bfseries},
-  cell{29}{1} = {r=7}  {c, m, bg=MacroCrBg,   fg=MacroCrFg,   font=\bfseries},
+  cell{2}{1}  = {r=8} {c, m, bg=MacroAuthBg, fg=MacroAuthFg, font=\bfseries},
+  cell{10}{1} = {r=5} {c, m, bg=MacroAuthBg, fg=MacroAuthFg, font=\bfseries},
+  cell{15}{1} = {r=7} {c, m, bg=MacroScopBg, fg=MacroScopFg, font=\bfseries},
+  cell{22}{1} = {r=5} {c, m, bg=MacroMappBg, fg=MacroMappFg, font=\bfseries},
+  cell{27}{1} = {r=3} {c, m, bg=MacroDetBg,  fg=MacroDetFg,  font=\bfseries},
+  cell{30}{1} = {r=8} {c, m, bg=MacroCrBg,   fg=MacroCrFg,   font=\bfseries},
+  cell{38}{1} = {r=8} {c, m, bg=MacroCrBg,   fg=MacroCrFg,   font=\bfseries},
+  cell{46}{1} = {r=9} {c, m, bg=MacroCrBg,   fg=MacroCrFg,   font=\bfseries},
 }
   Area & ID & Descrizione & Categoria & Priorità \\
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Autenticazione e Gestione Account}Autenticazione e Gestione Account\end{sideways}
-    & RF-01 & Registrazione tramite email e password organizzata in tre step: account, dati personali, completamento profilo.                                           & \catAccount  & \priCritical  \\
-    & RF-02 & Login con Google / Apple (SSO)                                                       & \catSecurity & \priMinor \\
-    & RF-03 & Recupero password tramite email (link di reset)                                      & \catSecurity & \priMinor \\
-    & RF-04 & Selezione obbligatoria di almeno 3 interessi (con validazione prima del completamento registrazione) per personalizzare il feed              & \catUX       & \priMandatory \\
-    & RF-05 & Verifica età: obbligo di inserire la data di nascita; soglia minima 16 anni          & \catAccount  & \priCritical  \\
-    & RF-06 & Profilo utente: nome, bio, città, foto profilo caricabile, interessi         & \catAccount  & \priMandatory \\
-    & RF-07 & Visualizzazione statistiche profilo (eventi seguiti, creati)                         & \catAccount  & \priDesirable \\
-    & RF-08 & Modifica profilo e preferenze in qualsiasi momento                                   & \catAccount  & \priMandatory \\
-    & RF-09 & Cancellazione definitiva dell'account e dati associati                               & \catAccount  & \priMinor \\
+    \sideArea{Autenticazione\\e Gestione\\Account} & RF-01 & Registrazione con email, password, conferma password, nome, data di nascita, citta, bio opzionale, immagine profilo opzionale e interessi.        & \catAccount  & \priCritical  \\
+    & RF-02 & Login con Google / Apple (SSO).                                                      & \catSecurity & \priMinor     \\
+    & RF-03 & Recupero password tramite email.                                                     & \catSecurity & \priMandatory \\
+    & RF-04 & Selezione obbligatoria di almeno 3 interessi per personalizzare il feed.             & \catUX       & \priMandatory \\
+    & RF-05 & Verifica età: obbligo di inserire la data di nascita; soglia minima 16 anni.         & \catAccount  & \priCritical  \\
+    & RF-06 & Profilo utente: nome, bio, città, foto profilo caricabile, interessi.        & \catAccount  & \priMandatory \\
+    & RF-07 & Modifica profilo: nome, citta validata, bio e interessi.                     & \catAccount  & \priMandatory \\
+    & RF-08 & Logout con rimozione sessione locale e disregistrazione push token se presente.      & \catAccount  & \priMandatory \\
+    \sideArea{Autenticazione\\e Gestione\\Account} & RF-09 & Verifica disponibilita email prima del completamento della registrazione.            & \catAccount  & \priMandatory \\
+    & RF-10 & Login con email e password.                                                          & \catAccount  & \priCritical  \\
+    & RF-11 & Sessione persistente tramite JWT salvato localmente e ripristino automatico all'avvio.            & \catAccount  & \priMandatory \\
+    & RF-12 & Cancellazione definitiva account e dati associati.                                   & \catData     & \priDesiderable \\
+    & RF-13 & Catalogo interessi e categorie letto dal backend.                                    & \catData     & \priMandatory \\
+    
+   
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Scoperta e Ricerca Eventi}Scoperta e Ricerca Eventi\end{sideways}
-    & RF-10 & Feed home con eventi in zona ordinati per distanza dall'utente                       & \catUX       & \priCritical  \\
-    & RF-11 & Filtro per categoria tematica (serata, calcetto, concerto, sport, social, altro)     & \catUX       & \priMandatory \\
-    & RF-12 & Filtro per data (giorno, settimana, mese)                                            & \catUX       & \priMandatory \\
-    & RF-13 & Filtro per orario (fascia mattina / pomeriggio / sera)                               & \catUX       & \priDesirable \\
-    & RF-14 & Filtro per affinità elettiva (basato sugli interessi del profilo utente)             & \catUX       & \priDesirable \\
-    & RF-15 & Ricerca testuale per titolo e luogo                                                  & \catUX       & \priMandatory \\
-    & RF-16 & Ordinamento per: distanza, popolarità, data                                          & \catUX       & \priDesirable \\
-    & RF-17 & Sezione 'In corso ora' (eventi live)                                                 & \catUX       & \priMinor     \\
-    & RF-18 & Sezione 'In tendenza' (algoritmo di popolarità)                                      & \catUX       & \priMinor     \\
-    & RF-19 & Visualizzazione Timeline: scorrimento cronologico degli eventi futuri                 & \catUX       & \priMinor     \\
-    & RF-20 & Salvataggio eventi (bookmark/preferiti)                                               & \catData     & \priMinor     \\
-  %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Mappa Interattiva}Mappa Interattiva\end{sideways}
-    & RF-21 & Vista mappa con pin colorati per categoria e geolocalizzazione dinamica in tempo reale & \catDevice & \priMandatory \\
-    & RF-22 & Popup informativo al click del pin con anteprima dell'evento                         & \catUX       & \priMandatory \\
-    & RF-23 & Filtri categoria sincronizzati tra lista eventi e mappa                               & \catUX       & \priDesirable \\
-    & RF-24 & Integrazione con Google Maps / Apple Maps per navigazione verso l'evento              & \catPort     & \priDesirable \\
-  %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Dettaglio Evento}Dettaglio Evento\end{sideways}
-    & RF-25 & Scheda dettaglio: titolo, descrizione, data, orario, luogo, costo, partecipanti      & \catUX       & \priCritical  \\
-    & RF-26 & Mappa integrata con indirizzo dell'evento                                             & \catUX       & \priDesirable \\
-    & RF-27 & Pulsante di adesione direttamente nella scheda dettaglio                              & \catUX       & \priMandatory \\
-  %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Creazione e Gestione Evento}Creazione e Gestione Evento\end{sideways}
-    & RF-28 & Form creazione evento in 3 step: tipo $\rightarrow$ luogo/orari $\rightarrow$ pubblicazione & \catUX & \priCritical \\
-    & RF-29 & Ricerca luogo con autocompletamento                                                   & \catUX       & \priMinor     \\
-    & RF-30 & Posti massimi configurabili (opzionale per eventi illimitati)                         & \catData     & \priMandatory \\
-    & RF-31 & Costo per partecipante (0 = gratis)                                                   & \catData     & \priMandatory \\
-    & RF-32 & Scelta tipo chat: gruppo aperto o solo annunci                                        & \catMsg      & \priMandatory \\
-    & RF-33 & Modifica evento dopo la pubblicazione                                                 & \catData     & \priMandatory \\
-    & RF-34 & Cancellazione evento con notifica automatica ai partecipanti                          & \catNotif    & \priMandatory \\
+    \sideArea{Scoperta\\e Ricerca\\Eventi} & RF-14 & Feed eventi attivi/non annullati con card evento complete.                           & \catUX       & \priCritical  \\
+    & RF-15 & Filtro categoria su feed e mappa.                                                    & \catUX       & \priMandatory \\
+    & RF-16 & Filtro prezzo gratuito/a pagamento.                                                  & \catUX       & \priMandatory \\
+    & RF-18 & Filtro raggio con geolocalizzazione e fallback sulla citta profilo.                  & \catDevice   & \priMandatory \\
+    & RF-19 & Ordinamento per affinita, distanza, prezzo, popolarita e data a livello API.         & \catUX       & \priDesirable \\
+    & RF-20 & Ricerca testuale per titolo, descrizione, luogo, indirizzo, citta e tag.             & \catUX       & \priMandatory \\
+    & RF-21 & Filtro data/orario esplicito.                                                        & \catUX       & \priDesirable \\
+    %
+    \sideArea{Mappa\\Interattiva} & RF-22 & Mappa con pin colorati, posizione utente e raggio di ricerca.                        & \catDevice   & \priMandatory \\
+    & RF-23 & Anteprima evento da pin e apertura dettaglio.                                        & \catUX       & \priMandatory \\
+    & RF-24 & Apertura luogo evento in Google Maps/Apple Maps o web URL.                           & \catPortability    & \priDesiderable \\
+    & RF-25 & Dettaglio evento con immagine, descrizione, data, luogo, mini-mappa, costo, partecipanti e capienza.                    & \catUX     & \priCritical     \\
+    & RF-26 & Ricerca luogo con autocompletamento e selezione POI su mappa.                         & \catDevice & \priMandatory \\
+     
+    %
+    \sideArea{Dettaglio\\Evento} & RF-27 & Dettaglio evento con immagine, descrizione, data, luogo, mini-mappa, costo, partecipanti e capienza.      & \catUX     & \priCritical     \\
+    & RF-28 & Azioni dettaglio: preferito, iscrizione/disiscrizione, chat, modifica/cancellazione per creatore.      & \catUX       & \priMandatory  \\
+    & RF-29 & Salvataggio e rimozione evento dai preferiti.                                         & \catData     & \priMandatory \\
+    %
+    \sideArea{Creazione\\e Gestione\\Evento} & RF-30 & Visualizzazione preferiti, eventi creati e iscrizioni nel profilo.                    & \catUX       & \priMandatory \\
+    & RF-31 & Iscrizione a evento con controllo capienza e transazione concorrente.                & \catData      & \priCritical     \\
+    & RF-32 & Disiscrizione da evento e aggiornamento partecipanti.                                 & \catData     & \priMandatory \\
+    & RF-33 & Pagamento reale o simulato per eventi a pagamento.                                    & \catData     & \priDesiderable \\
+    & RF-34 & Creazione evento in 3 step: tipo/contenuto, luogo/orari, pubblicazione.               & \catUX       & \priCritical \\
+    & RF-35 & Categoria, sottocategoria anche personalizzata, titolo e descrizione evento.          & \catUX       & \priMandatory \\
+    & RF-36 & Cancellazione evento con notifica automatica ai partecipanti.                          & \catNotif    & \priMandatory \\
+    & RF-37 & Validazione evento: data futura, capienza positiva/illimitata, prezzo massimo, indirizzo valido. & \catUX    & \priMandatory \\
+    \sideArea{Creazione\\e Gestione\\Evento} & RF-38 & Scelta chat evento: gruppo aperto o solo annunci.                        & \catMessaging    & \priMandatory \\
+    & RF-39 & Opzione per contare il creatore tra i partecipanti iniziali.                           & \catUX    & \priDesiderable \\
+    & RF-40 & Modifica evento da parte del solo creatore.                                            & \catData    & \priMandatory \\
+    & RF-41 & Notifica agli iscritti se cambiano data/ora o luogo.                                   & \catNotif    & \priMandatory \\
+    & RF-42 & Annullamento logico evento con tag status:cancelled e notifica partecipanti/preferiti.    & \catNotif    & \priMandatory \\
+    & RF-43 & Chat evento riservata a creatore e partecipanti.                                       & \catMessaging    & \priMandatory \\
+    & RF-44 & Invio e lettura messaggi evento, max 2000 caratteri.                                 & \catMessaging   & \priMandatory \\
+    & RF-45 & Modalita solo annunci: scrive solo il creatore.                        & \catMessaging   & \priMandatory \\
+    \sideArea{Creazione\\e Gestione\\Evento} & RF-46 & Consegna realtime messaggi via WebSocket.                                & \catMessaging   & \priMandatory \\
+    & RF-47 & Ricerca utente per email e avvio chat diretta.                              & \catMessaging   & \priMandatory \\
+    & RF-48 & Conversazioni dirette 1:1 con cronologia e ultimo messaggio.                               & \catMessaging   & \priMandatory \\
+    & RF-49 & Centro notifiche con badge non lette e apertura evento/chat.        & \catNotification   & \priMandatory \\
+    & RF-50 & Marcatura notifiche lette e cancellazione singola/totale.     & \catNotification   & \priMandatory \\
+    & RF-51 & Registrazione, aggiornamento, disabilitazione e test push token Expo.        & \catDevice   & \priMandatory \\
+    & RF-52 & Notifica nuovo evento compatibile con interessi e citta.       & \catNotification   & \priMandatory \\
+    & RF-53 & Reminder automatici per eventi salvati e imminenti.      & \catNotification   & \priMandatory \\
+    & RF-54 & Notifiche pochi posti ed evento al completo.        & \catNotification   & \priDesiderable \\
+   
+   
+   
+
 \end{longtblr}
 
 \newpage
@@ -225,53 +260,59 @@
   width   = \linewidth,
   row{odd}= {CatskillWhite},
   rowhead = 1,
-  colspec = {Q[c,m,1.5cm] Q[c,m,1.5cm] X[l,m,cmd=\RaggedRight] Q[c,m,2.6cm] Q[c,m,3cm]},
+  colspec = {Q[c,m,1.6cm] Q[c,m,1.5cm] X[l,m,cmd=\RaggedRight] Q[c,m,2.8cm] Q[c,m,3.2cm]},
   row{1}  = {Cello, c, m, fg=white, font=\bfseries},
+  column{1} = {c, m},
   column{2} = {c, m},
   column{4} = {c, m},
   column{5} = {c, m},
   cell{2}{1}  = {r=6} {c, m, bg=MacroPerfBg,   fg=MacroPerfFg,   font=\bfseries},
-  cell{8}{1}  = {r=5} {c, m, bg=MacroSicBg,    fg=MacroSicFg,    font=\bfseries},
-  cell{13}{1} = {r=3} {c, m, bg=MacroPrivBg,   fg=MacroPrivFg,   font=\bfseries},
-  cell{16}{1} = {r=2} {c, m, bg=MacroAccBg,    fg=MacroAccFg,    font=\bfseries},
-  cell{18}{1} = {r=2} {c, m, bg=MacroDispBg,   fg=MacroDispFg,   font=\footnotesize\bfseries},
-  cell{20}{1} = {r=2} {c, m, bg=MacroCompatBg, fg=MacroCompatFg, font=\footnotesize\bfseries},
-  column{2} = {c, m},
-  column{4} = {c, m},
-  column{5} = {c, m},
+  cell{8}{1}  = {r=9} {c, m, bg=MacroSicBg,    fg=MacroSicFg,    font=\bfseries},
+  cell{17}{1} = {r=9} {c, m, bg=MacroSicBg,    fg=MacroSicFg,    font=\bfseries},
+  cell{26}{1} = {r=3} {c, m, bg=MacroPrivBg,   fg=MacroPrivFg,   font=\bfseries},
+  cell{29}{1} = {r=2} {c, m, bg=MacroAccBg,    fg=MacroAccFg,    font=\bfseries},
+  cell{31}{1} = {r=2} {c, m, bg=MacroDispBg,   fg=MacroDispFg,   font=\footnotesize\bfseries},
+  cell{33}{1} = {r=2} {c, m, bg=MacroCompatBg, fg=MacroCompatFg, font=\footnotesize\bfseries},
 }
   Area & ID & Descrizione & Categoria & Priorità \\
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Performance}Performance\end{sideways}
-    & RNF-01 & Caricamento lista eventi $<$ 1.5s su connessione 4G                                  & \catPerf     & \priMandatory \\
+    \sideArea{Performance} & RNF-01 & Caricamento lista eventi $<$ 1.5s su connessione 4G                                  & \catPerf     & \priMandatory \\
     & RNF-02 & Caricamento mappa POI eventi $<$ 2s su connessione 4G                                & \catPerf     & \priMandatory \\
     & RNF-03 & Tempo di avvio app $\leq$ 3s                                                         & \catPerf     & \priMandatory \\
-    & RNF-04 & Messaggi chat consegnati in $<$ 200ms (real-time)                                    & \catPerf     & \priMandatory \\
+    & RNF-04 & Messaggi chat consegnati in $<$ 200ms                                                & \catPerf     & \priMandatory \\
     & RNF-05 & Query geospaziale per eventi entro raggio prestabilito completata in $\leq$ 500ms    & \catPerf     & \priMandatory \\
     & RNF-06 & Interfaccia reattiva: frame rate $\geq$ 30 fps durante la navigazione                & \catPerf     & \priMandatory \\
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Sicurezza}Sicurezza\end{sideways}
-    & RNF-07 & Autenticazione JWT con refresh token a 7 giorni                                      & \catSecurity & \priCritical  \\
-    & RNF-08 & Token memorizzato in modo sicuro per evitare login ripetuti                          & \catSecurity & \priCritical  \\
-    & RNF-09 & Hashing delle password con algoritmo salted                                          & \catSecurity & \priCritical  \\
-    & RNF-10 & Crittografia dei dati sensibili in transito e a riposo                               & \catSecurity & \priCritical  \\
+    \sideArea{Sicurezza} & RNF-07 & Autenticazione JWT con refresh token a 7 giorni.                                      & \catSecurity & \priCritical  \\
+    & RNF-08 & Storage sessione: SecureStore su mobile, localStorage su web.                       & \catSecurity & \priCritical  \\
+    & RNF-09 & Password salvate con hashing bcrypt.                                                 & \catSecurity & \priCritical  \\
+    & RNF-10 & Validazione input backend con Zod.                            & \catSecurity & \priCritical  \\
     & RNF-11 & Dati di pagamento mai memorizzati lato client                                        & \catSecurity & \priCritical  \\
+    & RNF-12 & Bearer token validato dal middleware backend.                                        & \catSecurity & \priCritical  \\
+    & RNF-12 & Permesso esplicito per geolocalizzazione e fallback su città.                                       & \catSecurity & \priCritical  \\
+    & RNF-12 & Persistenza PostgreSQL con PostGIS.     & \catData & \priCritical  \\
+    & RNF-12 & Colonna geom generata da lat/lng e indice GiST.                                     & \catPerformance & \priMandatory  \\
+    \sideArea{Sicurezza} & RNF-12 & Realtime WebSocket autenticato e riconnessione automatica client.                                     & \catPerformance & \priMandatory  \\
+    & RNF-12 & Polling periodico per eventi/notifiche e refresh all'attivazione app.                           & \catPerformance & \priMandatory  \\
+    & RNF-12 & API REST con errori strutturati e codici coerenti.                                    & \catUX & \priMandatory  \\
+    & RNF-12 & Supporto Expo/React Native per web, iOS e Android                                    & \catPortability & \priCritical  \\
+    & RNF-12 & Nessuna memorizzazione dati di pagamento.                                    & \catSecurity & \priMandatory  \\
+    & RNF-12 & Refresh token dedicato.                                     & \catSecurity & \priDesiderable  \\
+    & RNF-12 & Crittografia dati applicativi a riposo oltre password/token.                             & \catSecurity & \priDesiderable  \\
+    & RNF-12 & Interfaccia multilingua.                            & \catPortability & \priMinor  \\
+    & RNF-12 & SLA uptime 99\% e 10000 utenti attivi simultanei.                         & \catPerformance & \priDesiderable  \\
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Privacy}Privacy\end{sideways}
-    & RNF-12 & Consenso esplicito alla geolocalizzazione prima dell'uso                             & \catSecurity & \priCritical  \\
+    \sideArea{Privacy} & RNF-12 & Consenso esplicito alla geolocalizzazione prima dell'uso                             & \catSecurity & \priCritical  \\
     & RNF-13 & Supporto diritto all'oblio: cancellazione account e dati su richiesta (RF-09)        & \catData     & \priCritical  \\
     & RNF-14 & Nessuna condivisione dati con terze parti senza consenso esplicito                    & \catSecurity & \priCritical  \\
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Accessibilità}Accessibilità\end{sideways}
-    & RNF-15 & Tutte le azioni principali raggiungibili in massimo 3 tap                            & \catUX       & \priDesirable \\
+    \sideArea{Accessibilita} & RNF-15 & Tutte le azioni principali raggiungibili in massimo 3 tap                            & \catUX       & \priDesirable \\
     & RNF-16 & Interfaccia multi-lingua                                                              & \catUX       & \priDesirable \\
   %
-  \rotatebox{90}{\makecell{Disponibilità\\e Scalabilità\phantomsection\addcontentsline{toc}{subsection}{Disponibilità e Scalabilità}}}
-    & RNF-17 & Uptime 99\%                                                                          & \catPerf     & \priDesirable \\
+    \sideArea{Disponibilita\\e Scalabilita} & RNF-17 & l'applicazione è garantita come attiva e raggiungibile per il 99\% del tempo totale                 & \catPerf     & \priDesirable \\
     & RNF-18 & Architettura capace di gestire $\geq$ 10\,000 utenti attivi simultanei senza degrado & \catPerf     & \priMandatory \\
   %
-  \begin{sideways}\phantomsection\addcontentsline{toc}{subsection}{Portabilità}Portabilità\end{sideways}
-    & RNF-19 & Supporto iOS 15+ e Android 10+ (cross-platform React Native / Expo)                 & \catPort     & \priCritical  \\
+    \sideArea{Portabilita} & RNF-19 & Supporto iOS 15+ e Android 10+ (cross-platform React Native / Expo)                 & \catPort     & \priCritical  \\
     & RNF-20 & L'applicazione deve mantenere le stesse funzionalità core indipendentemente dalla piattaforma su cui viene eseguita & \catPort & \priMandatory \\
     
 \end{longtblr}
